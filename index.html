@@ -8,7 +8,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1608364531601-6ddf0b5f0a36?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       height: 100vh;
       display: flex; justify-content: center; align-items: center;
     }
@@ -43,7 +43,7 @@
     button:hover { background: #a5832a; color: #fff; }
     .note { font-size: 13px; color: #555; margin-top: 8px; }
     .social {
-      margin-top: 25px; display: flex; justify-content: center; gap: 20px;
+      margin-top: 25px; display: flex; justify-content: center;
     }
     .social a {
       display: inline-flex; align-items: center; gap: 8px;
@@ -58,12 +58,10 @@
   <div class="overlay">
     <h2>Weapon Request Form</h2>
     <form id="gameForm">
-      <label for="uid">In-Game UID</label>
+      <label for="uid">In‑Game UID</label>
       <input type="text" id="uid" name="uid" required />
-
       <label for="level">Account Level (200+)</label>
       <input type="number" id="level" name="level" min="200" required />
-
       <label>Desired Weapons (up to 5)</label>
       <div class="weapons-list">
         <input type="text" name="weapon1" placeholder="Weapon 1" required />
@@ -72,29 +70,25 @@
         <input type="text" name="weapon4" placeholder="Weapon 4" />
         <input type="text" name="weapon5" placeholder="Weapon 5" />
       </div>
-
-      <label>Preferred Contact Method</label>
+      <label>Preferred Contact</label>
       <div class="platform-section">
         <select id="platform" name="platform" required>
           <option value="">-- Choose --</option>
           <option value="telegram">Telegram</option>
-          <option value="instagram">Instagram</option>
         </select>
-        <input type="text" id="contact" name="contact" placeholder="Your username" required />
+        <input type="text" id="contact" name="contact" placeholder="Your Telegram username" required />
       </div>
-
       <button type="submit">Submit</button>
-      <div class="note">We will contact you via selected platform</div>
+      <div class="note">We will contact you via Telegram</div>
     </form>
 
     <div class="social">
       <a href="https://t.me/Opsterra" target="_blank" rel="noopener">
-        <svg viewBox="0 0 240 240"><path fill="#0088CC" d="M120,0C53.7,0,0,53.7,0,120s53.7,120,120,120s120-53.7,120-120S186.3,0,120,0z"/><path fill="#fff" d="M177.9,74.8l-20.8,98.4c-1.6,6.5-5.9,8.2-12,5.1l-33.3-24.6l-16.1,15.5c-1.8,1.8-3.3,3.3-6.8,3.3l2.4-33.5l60.9-55.2c2.6-2.4-0.6-3.8-4-1.4l-75.3,47.4l-32.4-10.1c-7-2.2-7.1-7-1.5-10.2l123.6-47.8C174,63.6,180.8,68.8,177.9,74.8z"/></svg>
+        <svg viewBox="0 0 240 240">
+          <path fill="#0088CC" d="M120,0C53.7,0,0,53.7,0,120s53.7,120,120,120s120-53.7,120-120S186.3,0,120,0z" />
+          <path fill="#fff" d="M177.9,74.8l-20.8,98.4c-1.6,6.5-5.9,8.2-12,5.1l-33.3-24.6l-16.1,15.5c-1.8,1.8-3.3,3.3-6.8,3.3l2.4-33.5l60.9-55.2c2.6-2.4-0.6-3.8-4-1.4l-75.3,47.4l-32.4-10.1c-7-2.2-7.1-7-1.5-10.2l123.6-47.8C174,63.6,180.8,68.8,177.9,74.8z"/>
+        </svg>
         Telegram Channel
-      </a>
-      <a href="https://instagram.com/yourinsta" target="_blank" rel="noopener">
-        <svg viewBox="0 0 512 512"><path fill="#E1306C" d="M349.33 69.33H162.67C109.22 69.33 69.33 109.22 69.33 162.67v186.67C69.33 402.78 109.22 442.67 162.67 442.67h186.67c53.45 0 93.34-39.89 93.34-93.33V162.67c0-53.45-39.89-93.34-93.34-93.34zm61.33 280c0 33.78-27.55 61.33-61.33 61.33H162.67c-33.78 0-61.33-27.55-61.33-61.33V162.67c0-33.78 27.55-61.33 61.33-61.33h186.67c33.78 0 61.33 27.55 61.33 61.33v186.66z"/><circle fill="#E1306C" cx="331.2" cy="180.8" r="34.13"/></svg>
-        Instagram
       </a>
     </div>
   </div>
@@ -107,20 +101,18 @@
         uid: form.uid.value,
         level: form.level.value,
         weapons: [
-          form.weapon1.value,
-          form.weapon2.value,
-          form.weapon3.value,
-          form.weapon4.value,
+          form.weapon1.value, form.weapon2.value,
+          form.weapon3.value, form.weapon4.value,
           form.weapon5.value
-        ].filter(w => w.trim() !== ''),
+        ].filter(w => w.trim()),
         platform: form.platform.value,
         contact: form.contact.value
       };
-
       const webhookUrl = 'https://script.google.com/macros/s/AKfycbzR3Kbv_0pSgRTa8pyAQZgvcy8NlArPTlFvQYfWt0fS_RCmQ_Ej5zdGI8vIDKzMB1nZgQ/exec';
       try {
         const resp = await fetch(webhookUrl, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
         alert(resp.ok ? 'Form submitted successfully ✅' : 'Failed to submit ❌');
